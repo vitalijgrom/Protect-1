@@ -79,7 +79,8 @@ wrangler.toml           конфиг Pages: каталог сборки и пе�
 
 ## Деплой на Cloudflare Pages
 
-### Вариант 1 — из Git (рекомендуемый)
+Пошаговая инструкция со всеми настройками, подключением поддомена, закрытием
+доступа и диагностикой — в **[DEPLOY.md](DEPLOY.md)**. Коротко:
 
 1. Cloudflare Dashboard → **Workers & Pages** → **Create** → **Pages** →
    **Connect to Git**, выбрать этот репозиторий.
@@ -87,30 +88,24 @@ wrangler.toml           конфиг Pages: каталог сборки и пе�
    * Framework preset — **None**
    * Build command — оставить пустым
    * Build output directory — **`public`**
-3. **Settings → Variables and Secrets** добавить:
-
-   | Переменная | Значение |
-   |---|---|
-   | `SHEET_ID` | ID таблицы из её URL |
-   | `SHEET_NAME` | `Data` |
-   | `CACHE_TTL` | `300` |
-
-4. Deploy. Каталог `functions/` Cloudflare подхватывает сам — `/api/reviews`
+3. Deploy. Каталог `functions/` Cloudflare подхватывает сам — `/api/reviews`
    появится без дополнительной настройки.
 
-### Вариант 2 — из командной строки
+Переменные `SHEET_ID`, `SHEET_NAME` и `CACHE_TTL` заданы в `wrangler.toml`.
+Для Pages этот файл — источник истины: в дашборде переменные видно, но
+редактировать их нельзя. Чтобы управлять ими из интерфейса, удалите блок
+`[vars]` и задайте значения в **Settings → Variables and Secrets** отдельно для
+Production и Preview.
+
+Разовый деплой из командной строки:
 
 ```bash
 npm install
 npx wrangler pages deploy public
 ```
 
-### Своё доменное имя и доступ
-
-* Домен: **Custom domains** в проекте Pages.
-* Дашборд внутренний — закройте его **Cloudflare Access** (Zero Trust → Access →
-  Applications): вход по корпоративной почте или одноразовому коду, кода менять
-  не надо. В разметке уже стоит `noindex, nofollow`.
+Домен подключается в **Custom domains** проекта. Дашборд внутренний — закройте
+его **Cloudflare Access**; в разметке уже стоит `noindex, nofollow`.
 
 ## Локальная разработка
 
