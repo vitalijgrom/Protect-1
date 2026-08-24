@@ -2,18 +2,23 @@
    Дашборд отзывов о Виферон.
    Данные приходят из Cloudflare-функции /api/reviews, которая ходит в Google
    Таблицу. Если функция недоступна (локальная статика, обрыв связи) —
-   подхватывается снапшот public/data/fallback.json, и об этом говорит баннер.
+   подхватывается снапшот data/fallback.json, и об этом говорит баннер.
+   Общие хелперы — в common.js.
    --------------------------------------------------------------------------- */
 'use strict';
+
+var D = window.DASH;
+var $ = D.$;
+var node = D.node;
 
 var CONFIG = {
   apiUrl: 'api/reviews',
   fallbackUrl: 'data/fallback.json',
   autoRefreshMs: 5 * 60 * 1000,
-  requestTimeoutMs: 12000,
+  timeoutMs: 12000,
 };
 
-/* Площадки, которые являются отзовиками/форумами, а не аптеками.
+/* Площадки, которые являются отзовиками или форумами, а не аптеками.
    Всё, чего нет в списке, считается аптечным сайтом или e-com. */
 var REVIEW_PLATFORMS = [
   'irecommend.ru', 'otzovik.com', 'otzyvru.com', 'otzyv.com',
@@ -38,27 +43,22 @@ var CATEGORY_ORDER = [
 /* Пороги тепловой карты. Распределение отзывов очень «длиннохвостое»
    (от 0 до 1000+), поэтому шаги неравномерные. */
 var HEAT_BINS = [
-  { min: 0,   label: '0' },
-  { min: 1,   label: '1–4' },
-  { min: 5,   label: '5–14' },
-  { min: 15,  label: '15–49' },
-  { min: 50,  label: '50–99' },
+  { min: 0, label: '0' },
+  { min: 1, label: '1–4' },
+  { min: 5, label: '5–14' },
+  { min: 15, label: '15–49' },
+  { min: 50, label: '50–99' },
   { min: 100, label: '100–299' },
   { min: 300, label: '300+' },
 ];
 
 var STATE = {
   rows: [],
-  meta: null,
   filters: { search: '', type: '', site: '', category: '', zeroOnly: false },
   sort: { key: 'reviews', dir: 'desc' },
-  loading: false,
 };
 
-var nf = new Intl.NumberFormat('ru-RU');
-var $ = function (id) { return document.getElementById(id); };
-
-/* --- Таксономия ----------------------------------------------------------- */
+/* --- Таксономия ------------------------------------------------------------- */
 
 function classifySite(site) {
   var host = String(site || '').toLowerCase().replace(/^www\./, '').trim();
@@ -108,110 +108,7 @@ function enrich(raw) {
   });
 }
 
-/* --- Загрузка ------------------------------------------------------------- */
-
-function fetchJson(url, timeoutMs) {
-  var controller = new AbortController();
-  var timer = setTimeout(function () { controller.abort(); }, timeoutMs);
-  return fetch(url, { signal: controller.signal, headers: { accept: 'application/json' } })
-    .then(function (res) {
-      if (!res.ok) throw new Error('HTTP ' + res.status);
-      return res.json().then(function (data) {
-        return { data: data, cache: res.headers.get('x-cache') || '' };
-      });
-    })
-    .finally(function () { clearTimeout(timer); });
-}
-
-function load(force) {
-  if (STATE.loading) return Promise.resolve();
-  STATE.loading = true;
-  $('refresh').disabled = true;
-  setStatus(STATE.rows.length ? 'Обновление…' : 'Загрузка данных…');
-
-  var url = CONFIG.apiUrl + (force ? '?refresh=1' : '');
-
-  return fetchJson(url, CONFIG.requestTimeoutMs)
-    .then(function (result) {
-      if (!result.data || result.data.ok === false || !Array.isArray(result.data.rows)) {
-        throw new Error((result.data && result.data.error) || 'Некорректный ответ прослойки');
-      }
-      apply(result.data, result.cache, null);
-    })
-    .catch(function (apiError) {
-      // Прослойка недоступна — показываем снапшот, но честно об этом пишем.
-      return fetchJson(CONFIG.fallbackUrl, CONFIG.requestTimeoutMs)
-        .then(function (result) {
-          apply(result.data, '', apiError);
-        })
-        .catch(function () {
-          setStatus('Данные не загрузились');
-          showBanner(
-            'Не удалось получить данные ни из Cloudflare-прослойки, ни из локального снапшота. ' +
-            'Проверьте /api/reviews. Причина: ' + apiError.message
-          );
-        });
-    })
-    .finally(function () {
-      STATE.loading = false;
-      $('refresh').disabled = false;
-    });
-}
-
-function apply(payload, cacheHeader, apiError) {
-  STATE.rows = enrich(payload.rows);
-  STATE.meta = {
-    source: payload.source || 'unknown',
-    fetchedAt: payload.fetchedAt || null,
-    cache: cacheHeader,
-    stale: cacheHeader === 'STALE',
-  };
-
-  if (apiError) {
-    showBanner(
-      'Показан локальный снапшот данных: прослойка /api/reviews недоступна (' + apiError.message + '). ' +
-      'При деплое на Cloudflare Pages функция появится автоматически.'
-    );
-  } else if (STATE.meta.stale) {
-    showBanner('Google Таблица сейчас недоступна — показан последний удачный ответ из кэша Cloudflare.');
-  } else {
-    hideBanner();
-  }
-
-  buildFilterOptions();
-  render();
-  setStatus(describeMeta());
-  $('foot-meta').textContent = describeSource();
-}
-
-function describeMeta() {
-  if (!STATE.meta || !STATE.meta.fetchedAt) return 'Данные загружены';
-  var d = new Date(STATE.meta.fetchedAt);
-  if (isNaN(d.getTime())) return 'Данные загружены';
-  var time = d.toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' });
-  var date = d.toLocaleDateString('ru-RU', { day: '2-digit', month: '2-digit' });
-  return 'Данные от ' + date + ', ' + time;
-}
-
-function describeSource() {
-  if (!STATE.meta) return '';
-  var parts = [];
-  parts.push(STATE.meta.source === 'google-sheets' ? 'Источник: Google Таблица' : 'Источник: локальный снапшот');
-  if (STATE.meta.cache) parts.push('edge-кэш: ' + STATE.meta.cache);
-  parts.push('строк: ' + nf.format(STATE.rows.length));
-  return parts.join(' · ');
-}
-
-function setStatus(text) { $('status').textContent = text; }
-
-function showBanner(text) {
-  var banner = $('banner');
-  banner.textContent = text;
-  banner.hidden = false;
-}
-function hideBanner() { $('banner').hidden = true; }
-
-/* --- Фильтрация ----------------------------------------------------------- */
+/* --- Фильтрация ------------------------------------------------------------- */
 
 function visibleRows() {
   var f = STATE.filters;
@@ -230,9 +127,8 @@ function visibleRows() {
 }
 
 function buildFilterOptions() {
-  var sites = unique(STATE.rows.map(function (r) { return r.site; })).sort(function (a, b) {
-    return a.localeCompare(b, 'ru');
-  });
+  var sites = D.unique(STATE.rows.map(function (r) { return r.site; }))
+    .sort(function (a, b) { return a.localeCompare(b, 'ru'); });
   fillSelect($('f-site'), sites, 'Все площадки', STATE.filters.site);
 
   var cats = CATEGORY_ORDER.filter(function (c) {
@@ -248,16 +144,7 @@ function fillSelect(select, values, allLabel, current) {
   select.value = values.indexOf(current) !== -1 ? current : '';
 }
 
-function unique(list) {
-  var seen = Object.create(null);
-  var out = [];
-  list.forEach(function (item) {
-    if (item && !seen[item]) { seen[item] = true; out.push(item); }
-  });
-  return out;
-}
-
-/* --- Рендер --------------------------------------------------------------- */
+/* --- Рендер ----------------------------------------------------------------- */
 
 function render() {
   var rows = visibleRows();
@@ -282,38 +169,34 @@ function median(values) {
 
 function renderKpis(rows) {
   var total = sum(rows, 'reviews');
-  var sites = unique(rows.map(function (r) { return r.site; })).length;
+  var sites = D.unique(rows.map(function (r) { return r.site; })).length;
   var zero = rows.filter(function (r) { return r.reviews === 0; }).length;
-  var med = median(rows.map(function (r) { return r.reviews; }));
 
-  $('kpi-total').textContent = nf.format(total);
-  $('kpi-sites').textContent = nf.format(sites);
-  $('kpi-cards').textContent = nf.format(rows.length);
-  $('kpi-zero').textContent = nf.format(zero);
-  $('kpi-median').textContent = nf.format(med);
+  $('kpi-total').textContent = D.fmt(total);
+  $('kpi-sites').textContent = D.fmt(sites);
+  $('kpi-cards').textContent = D.fmt(rows.length);
+  $('kpi-zero').textContent = D.fmt(zero);
+  $('kpi-median').textContent = D.fmt(median(rows.map(function (r) { return r.reviews; })));
 
-  var isFiltered = rows.length !== STATE.rows.length;
-  $('kpi-total-hint').textContent = isFiltered
+  $('kpi-total-hint').textContent = rows.length !== STATE.rows.length
     ? 'по текущему фильтру'
     : 'по всем отслеживаемым карточкам';
 
   var pharm = rows.filter(function (r) { return r.type === 'pharmacy'; });
   var revs = rows.filter(function (r) { return r.type === 'reviews'; });
   $('kpi-sites-hint').textContent =
-    unique(pharm.map(function (r) { return r.site; })).length + ' аптечных · ' +
-    unique(revs.map(function (r) { return r.site; })).length + ' отзовиков';
+    D.unique(pharm.map(function (r) { return r.site; })).length + ' аптечных · ' +
+    D.unique(revs.map(function (r) { return r.site; })).length + ' отзовиков';
 
   var maxRow = rows.reduce(function (best, r) { return !best || r.reviews > best.reviews ? r : best; }, null);
-  $('kpi-cards-hint').textContent = maxRow
-    ? 'максимум — ' + nf.format(maxRow.reviews) + ' на ' + maxRow.site
-    : ' ';
+  $('kpi-cards-hint').textContent = maxRow ? 'максимум — ' + D.fmt(maxRow.reviews) + ' на ' + maxRow.site : ' ';
 
   $('kpi-zero-hint').textContent = rows.length
     ? Math.round((zero / rows.length) * 100) + '% карточек — точки роста'
     : ' ';
 
   $('kpi-median-hint').textContent = rows.length
-    ? 'среднее — ' + nf.format(Math.round(total / rows.length))
+    ? 'среднее — ' + D.fmt(total / rows.length)
     : ' ';
 }
 
@@ -346,11 +229,11 @@ function renderBars(container, items, options) {
 
     row.appendChild(label);
     row.appendChild(track);
-    row.appendChild(node('span', { className: 'bar-row__value' }, nf.format(item.value)));
+    row.appendChild(node('span', { className: 'bar-row__value' }, D.fmt(item.value)));
 
-    bindTooltip(row, function () {
+    D.bindTooltip(row, function () {
       return {
-        value: nf.format(item.value) + ' отзыв' + plural(item.value, '', 'а', 'ов'),
+        value: D.fmt(item.value) + ' отзыв' + D.plural(item.value, '', 'а', 'ов'),
         label: item.label,
         meta: options && options.meta ? options.meta(item) : '',
       };
@@ -363,7 +246,7 @@ function renderBars(container, items, options) {
 }
 
 function renderSites(rows) {
-  var byKey = groupBy(rows, 'site');
+  var byKey = D.groupBy(rows, 'site');
   var items = Object.keys(byKey).map(function (site) {
     var group = byKey[site];
     return {
@@ -396,7 +279,7 @@ function renderSites(rows) {
 }
 
 function renderCategories(rows) {
-  var byKey = groupBy(rows, 'category');
+  var byKey = D.groupBy(rows, 'category');
   var items = CATEGORY_ORDER.filter(function (c) { return byKey[c]; }).map(function (cat) {
     var group = byKey[cat];
     return { label: cat, value: sum(group, 'reviews'), cards: group.length };
@@ -418,7 +301,7 @@ function renderSplit(rows) {
     var subset = rows.filter(function (r) { return r.type === group.key; });
     group.value = sum(subset, 'reviews');
     group.cards = subset.length;
-    group.sites = unique(subset.map(function (r) { return r.site; })).length;
+    group.sites = D.unique(subset.map(function (r) { return r.site; })).length;
     return group;
   });
 
@@ -434,9 +317,9 @@ function renderSplit(rows) {
     var seg = node('div', { className: 'split__seg ' + group.cls });
     seg.style.flex = group.value + ' 1 0';
     seg.tabIndex = 0;
-    bindTooltip(seg, function () {
+    D.bindTooltip(seg, function () {
       return {
-        value: nf.format(group.value) + ' (' + pct(group.value, total) + ')',
+        value: D.fmt(group.value) + ' (' + D.pct(group.value / total, 0) + ')',
         label: group.label,
         meta: 'площадок: ' + group.sites + ' · карточек: ' + group.cards,
       };
@@ -454,7 +337,7 @@ function renderSplit(rows) {
     item.appendChild(swatch);
     item.appendChild(node('span', {}, group.label + ' — '));
     item.appendChild(node('span', { className: 'legend__value' },
-      nf.format(group.value) + ' (' + pct(group.value, total) + ')'));
+      D.fmt(group.value) + ' (' + D.pct(group.value / total, 0) + ')'));
     legend.appendChild(item);
   });
   container.appendChild(legend);
@@ -464,7 +347,7 @@ function renderHeat(rows) {
   var container = $('chart-heat');
   container.textContent = '';
 
-  var sites = unique(rows.map(function (r) { return r.site; }));
+  var sites = D.unique(rows.map(function (r) { return r.site; }));
   var cats = CATEGORY_ORDER.filter(function (cat) {
     return rows.some(function (r) { return r.category === cat; });
   });
@@ -514,11 +397,11 @@ function renderHeat(rows) {
         td.title = site + ' — карточка «' + cat + '» не отслеживается';
       } else {
         td.className = 'l' + binOf(entry.reviews);
-        td.textContent = nf.format(entry.reviews);
+        td.textContent = D.fmt(entry.reviews);
         td.tabIndex = 0;
-        bindTooltip(td, function () {
+        D.bindTooltip(td, function () {
           return {
-            value: nf.format(entry.reviews) + ' отзыв' + plural(entry.reviews, '', 'а', 'ов'),
+            value: D.fmt(entry.reviews) + ' отзыв' + D.plural(entry.reviews, '', 'а', 'ов'),
             label: site + ' · ' + cat,
             meta: 'карточек: ' + entry.cards,
           };
@@ -527,8 +410,7 @@ function renderHeat(rows) {
       tr.appendChild(td);
     });
 
-    var totalCell = node('td', { className: 'total' }, nf.format(totals[site]));
-    tr.appendChild(totalCell);
+    tr.appendChild(node('td', { className: 'total' }, D.fmt(totals[site])));
     tbody.appendChild(tr);
   });
   table.appendChild(tbody);
@@ -574,13 +456,12 @@ function renderTable(rows) {
 
   var sorted = rows.slice().sort(comparator(STATE.sort));
   $('table-sub').textContent = sorted.length === STATE.rows.length
-    ? nf.format(sorted.length) + ' карточек'
-    : nf.format(sorted.length) + ' из ' + nf.format(STATE.rows.length) + ' карточек';
+    ? D.fmt(sorted.length) + ' карточек'
+    : D.fmt(sorted.length) + ' из ' + D.fmt(STATE.rows.length) + ' карточек';
 
   if (!sorted.length) {
     var tr = node('tr');
-    var td = node('td', { colSpan: 7, className: 'empty' }, 'Под фильтр ничего не попало');
-    tr.appendChild(td);
+    tr.appendChild(node('td', { colSpan: 7, className: 'empty' }, 'Под фильтр ничего не попало'));
     body.appendChild(tr);
     return;
   }
@@ -611,7 +492,7 @@ function renderTable(rows) {
 
     tr.appendChild(node('td', { className: 'product' }, row.product));
     tr.appendChild(node('td', {}, row.category));
-    tr.appendChild(node('td', { className: 'num' + (row.reviews ? '' : ' zero') }, nf.format(row.reviews)));
+    tr.appendChild(node('td', { className: 'num' + (row.reviews ? '' : ' zero') }, D.fmt(row.reviews)));
     tr.appendChild(node('td', { className: 'status' }, row.status || '—'));
 
     fragment.appendChild(tr);
@@ -624,134 +505,23 @@ function comparator(sort) {
   return function (a, b) {
     var x = a[sort.key];
     var y = b[sort.key];
-    if (typeof x === 'number' && typeof y === 'number') {
-      return (x - y) * dir || a.n - b.n;
-    }
+    if (typeof x === 'number' && typeof y === 'number') return (x - y) * dir || a.n - b.n;
     return String(x).localeCompare(String(y), 'ru') * dir || a.n - b.n;
   };
 }
 
-function groupBy(rows, key) {
-  var out = {};
-  rows.forEach(function (row) {
-    (out[row[key]] || (out[row[key]] = [])).push(row);
-  });
-  return out;
-}
-
-function pct(value, total) {
-  if (!total) return '0%';
-  var share = (value / total) * 100;
-  return (share < 10 ? share.toFixed(1) : Math.round(share)) + '%';
-}
-
-function plural(n, one, few, many) {
-  var mod10 = n % 10;
-  var mod100 = n % 100;
-  if (mod10 === 1 && mod100 !== 11) return one;
-  if (mod10 >= 2 && mod10 <= 4 && (mod100 < 12 || mod100 > 14)) return few;
-  return many;
-}
-
-/** Мини-хелпер для DOM: значения всегда кладём через textContent. */
-function node(tag, props, text) {
-  var el = document.createElement(tag);
-  if (props) {
-    Object.keys(props).forEach(function (key) {
-      if (key === 'className') el.className = props[key];
-      else if (key === 'colSpan') el.colSpan = props[key];
-      else el.setAttribute(key, props[key]);
-    });
-  }
-  if (text !== undefined && text !== null) el.textContent = text;
-  return el;
-}
-
-/* --- Тултип --------------------------------------------------------------- */
-
-var tooltip = null;
-
-function bindTooltip(el, getContent) {
-  var show = function (event) {
-    var data = getContent();
-    tooltip.textContent = '';
-    tooltip.appendChild(node('div', { className: 'tooltip__value' }, data.value));
-    tooltip.appendChild(node('div', { className: 'tooltip__label' }, data.label));
-    if (data.meta) tooltip.appendChild(node('div', { className: 'tooltip__meta' }, data.meta));
-    tooltip.classList.add('is-visible');
-    tooltip.setAttribute('aria-hidden', 'false');
-    position(event, el);
-  };
-  var hide = function () {
-    tooltip.classList.remove('is-visible');
-    tooltip.setAttribute('aria-hidden', 'true');
-  };
-
-  el.addEventListener('mouseenter', show);
-  el.addEventListener('mousemove', function (event) { position(event, el); });
-  el.addEventListener('mouseleave', hide);
-  el.addEventListener('focus', show);
-  el.addEventListener('blur', hide);
-}
-
-function position(event, el) {
-  var rect = el.getBoundingClientRect();
-  var x = event && event.clientX ? event.clientX + 14 : rect.left + rect.width / 2;
-  var y = (event && event.clientY ? event.clientY : rect.top) - 8;
-
-  tooltip.style.left = '0px';
-  tooltip.style.top = '0px';
-  var box = tooltip.getBoundingClientRect();
-
-  var left = Math.min(Math.max(8, x), window.innerWidth - box.width - 8);
-  var top = Math.min(Math.max(8, y - box.height), window.innerHeight - box.height - 8);
-  tooltip.style.left = left + 'px';
-  tooltip.style.top = top + 'px';
-}
-
-/* --- CSV ------------------------------------------------------------------ */
+/* --- Управление ------------------------------------------------------------- */
 
 function exportCsv() {
   var rows = visibleRows().slice().sort(comparator(STATE.sort));
-  var header = ['№', 'Площадка', 'Тип', 'Товар', 'Форма', 'Отзывы', 'Ссылка', 'Статус'];
-  var lines = [header.join(';')];
-
-  rows.forEach(function (row) {
-    lines.push([
-      row.n, row.site, TYPE_LABEL[row.type], row.product,
-      row.category, row.reviews, row.url, row.status,
-    ].map(csvCell).join(';'));
-  });
-
-  // BOM — чтобы Excel открыл кириллицу без плясок с кодировкой.
-  var blob = new Blob(['﻿' + lines.join('\r\n')], { type: 'text/csv;charset=utf-8' });
-  var url = URL.createObjectURL(blob);
-  var link = document.createElement('a');
-  link.href = url;
-  link.download = 'viferon-otzyvy.csv';
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
-  setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+  D.downloadCsv(
+    'viferon-otzyvy.csv',
+    ['№', 'Площадка', 'Тип', 'Товар', 'Форма', 'Отзывы', 'Ссылка', 'Статус'],
+    rows.map(function (row) {
+      return [row.n, row.site, TYPE_LABEL[row.type], row.product, row.category, row.reviews, row.url, row.status];
+    })
+  );
 }
-
-function csvCell(value) {
-  var s = String(value === null || value === undefined ? '' : value);
-  return /[";\r\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s;
-}
-
-/* --- Тема ----------------------------------------------------------------- */
-
-function toggleTheme() {
-  var root = document.documentElement;
-  var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  var current = root.dataset.theme || (prefersDark ? 'dark' : 'light');
-  var next = current === 'dark' ? 'light' : 'dark';
-  root.dataset.theme = next;
-  try { localStorage.setItem('viferon-dashboard-theme', next); } catch (e) {}
-}
-
-/* --- Инициализация -------------------------------------------------------- */
 
 function bindControls() {
   var search = $('f-search');
@@ -779,16 +549,13 @@ function bindControls() {
     render();
   });
 
-  $('refresh').addEventListener('click', function () { load(true); });
-  $('theme').addEventListener('click', toggleTheme);
   $('export').addEventListener('click', exportCsv);
 
   Array.prototype.forEach.call(document.querySelectorAll('#table thead th[data-sort]'), function (th) {
     th.addEventListener('click', function () {
       var key = th.dataset.sort;
-      if (STATE.sort.key === key) {
-        STATE.sort.dir = STATE.sort.dir === 'asc' ? 'desc' : 'asc';
-      } else {
+      if (STATE.sort.key === key) STATE.sort.dir = STATE.sort.dir === 'asc' ? 'desc' : 'asc';
+      else {
         STATE.sort.key = key;
         STATE.sort.dir = key === 'reviews' || key === 'n' ? 'desc' : 'asc';
       }
@@ -802,16 +569,22 @@ function bindControls() {
 }
 
 function init() {
-  tooltip = $('tooltip');
+  D.initTooltip();
   bindControls();
-  load(false);
-  setInterval(function () {
-    if (!document.hidden) load(false);
-  }, CONFIG.autoRefreshMs);
+
+  D.createLoader({
+    apiUrl: CONFIG.apiUrl,
+    fallbackUrl: CONFIG.fallbackUrl,
+    autoRefreshMs: CONFIG.autoRefreshMs,
+    timeoutMs: CONFIG.timeoutMs,
+    describe: function (payload) { return 'строк: ' + payload.count; },
+    onData: function (payload) {
+      STATE.rows = enrich(payload.rows);
+      buildFilterOptions();
+      render();
+    },
+  }).start();
 }
 
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', init);
-} else {
-  init();
-}
+if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+else init();

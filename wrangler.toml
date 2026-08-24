@@ -8,4 +8,5 @@ pages_build_output_dir = "public"
 [vars]
 SHEET_ID = "1LvR1dNFDnPKpOLRFNkyJ3HPjDWivmVuaDA4Mggy2COk"
 SHEET_NAME = "Data"
+MEDIA_SHEET_ID = "18xL7SvIsXgU5aKOhTzYKucLs290cjCITR8Xxk29gXL4"
 CACHE_TTL = "300"

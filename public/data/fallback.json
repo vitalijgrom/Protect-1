@@ -2,43 +2,139 @@
   "ok": true,
   "source": "snapshot",
   "sheet": "Data",
-  "fetchedAt": "2026-08-22T10:56:12.059Z",
-  "count": 113,
+  "fetchedAt": "2026-08-24T18:13:45.897Z",
+  "count": 125,
   "rows": [
     {
       "n": 1,
+      "site": "ozon.ru",
+      "product": "Супп. 150 000 МЕ",
+      "url": "https://www.ozon.ru/product/viferon-protivovirusnoe-interferon-alfa-2b-150-tys-me-10-349149832",
+      "reviews": 1864,
+      "status": ""
+    },
+    {
+      "n": 2,
+      "site": "ozon.ru",
+      "product": "Супп. 500 000 МЕ",
+      "url": "https://www.ozon.ru/product/viferon-protivovirusnoe-interferon-alfa-2b-500-tys-me-10-349149833",
+      "reviews": 722,
+      "status": ""
+    },
+    {
+      "n": 3,
+      "site": "ozon.ru",
+      "product": "Супп. 1 000 000 МЕ",
+      "url": "https://www.ozon.ru/product/viferon-protivovirusnoe-interferon-alfa-2b-1-mln-me-10-349149831/",
+      "reviews": 634,
+      "status": ""
+    },
+    {
+      "n": 4,
+      "site": "ozon.ru",
+      "product": "Супп. 3 000 000 МЕ",
+      "url": "https://www.ozon.ru/product/viferon-protivovirusnoe-interferon-alfa-2b-3-mln-me-10-349149834",
+      "reviews": 363,
+      "status": ""
+    },
+    {
+      "n": 5,
+      "site": "ozon.ru",
+      "product": "Мазь 40 000 МЕ/г",
+      "url": "https://www.ozon.ru/product/viferon-protivovirusnoe-interferon-alfa-2b-maz-12-g-589006797",
+      "reviews": 671,
+      "status": ""
+    },
+    {
+      "n": 6,
+      "site": "ozon.ru",
+      "product": "Гель 36 000 МЕ/г, 12 г",
+      "url": "https://www.ozon.ru/product/viferon-protivovirusnoe-interferon-alfa-2b-gel-12-g-563626595",
+      "reviews": 407,
+      "status": ""
+    },
+    {
+      "n": 7,
+      "site": "wildberries.ru",
+      "product": "Супп. 150 000 МЕ",
+      "url": "https://www.wildberries.ru/eapteka/catalog/822674114/detail.aspx",
+      "reviews": 47,
+      "status": ""
+    },
+    {
+      "n": 8,
+      "site": "wildberries.ru",
+      "product": "Супп. 500 000 МЕ",
+      "url": "https://www.wildberries.ru/eapteka/catalog/822662329/detail.aspx",
+      "reviews": 39,
+      "status": ""
+    },
+    {
+      "n": 9,
+      "site": "wildberries.ru",
+      "product": "Супп. 1 000 000 МЕ",
+      "url": "https://www.wildberries.ru/eapteka/catalog/822681585/detail.aspx",
+      "reviews": 45,
+      "status": ""
+    },
+    {
+      "n": 10,
+      "site": "wildberries.ru",
+      "product": "Супп. 3 000 000 МЕ",
+      "url": "https://www.wildberries.ru/eapteka/catalog/822662580/detail.aspx",
+      "reviews": 18,
+      "status": ""
+    },
+    {
+      "n": 11,
+      "site": "wildberries.ru",
+      "product": "Гель 36 000 МЕ/г",
+      "url": "https://www.wildberries.ru/eapteka/catalog/822670671/detail.aspx",
+      "reviews": 40,
+      "status": ""
+    },
+    {
+      "n": 12,
+      "site": "wildberries.ru",
+      "product": "Мазь 40 000 МЕ/г, 12 г",
+      "url": "https://www.wildberries.ru/eapteka/catalog/822665726/detail.aspx",
+      "reviews": 57,
+      "status": ""
+    },
+    {
+      "n": 13,
       "site": "uteka.ru",
-      "product": "Супп. 150 000 МЕ, 10 шт",
+      "product": "Супп. 150 000 МЕ",
       "url": "https://uteka.ru/product/viferon-141118/",
       "reviews": 73,
       "status": ""
     },
     {
-      "n": 2,
+      "n": 14,
       "site": "uteka.ru",
-      "product": "Супп. 500 000 МЕ, 10 шт",
+      "product": "Супп. 500 000 МЕ",
       "url": "https://uteka.ru/product/viferon-141122/",
       "reviews": 73,
       "status": ""
     },
     {
-      "n": 3,
+      "n": 15,
       "site": "uteka.ru",
-      "product": "Супп. 1 000 000 МЕ, 10 шт",
+      "product": "Супп. 1 000 000 МЕ",
       "url": "https://uteka.ru/product/viferon-141115/",
       "reviews": 73,
       "status": ""
     },
     {
-      "n": 4,
+      "n": 16,
       "site": "uteka.ru",
-      "product": "Супп. 3 000 000 МЕ, 10 шт",
+      "product": "Супп. 3 000 000 МЕ",
       "url": "https://uteka.ru/product/viferon-141120/",
       "reviews": 73,
       "status": ""
     },
     {
-      "n": 5,
+      "n": 17,
       "site": "uteka.ru",
       "product": "Мазь 40 000 МЕ/г, 12 г",
       "url": "https://uteka.ru/product/viferon-141123/",
@@ -46,7 +142,7 @@
       "status": ""
     },
     {
-      "n": 6,
+      "n": 18,
       "site": "uteka.ru",
       "product": "Гель 36 000 МЕ/г, 12 г",
       "url": "https://uteka.ru/product/viferon-141126/",
@@ -54,7 +150,7 @@
       "status": ""
     },
     {
-      "n": 7,
+      "n": 19,
       "site": "eapteka.ru",
       "product": "Супп. 150 000 МЕ",
       "url": "https://www.eapteka.ru/goods/id110328/",
@@ -62,7 +158,7 @@
       "status": ""
     },
     {
-      "n": 8,
+      "n": 20,
       "site": "eapteka.ru",
       "product": "Супп. 500 000 МЕ",
       "url": "https://www.eapteka.ru/goods/id110326/",
@@ -70,7 +166,7 @@
       "status": ""
     },
     {
-      "n": 9,
+      "n": 21,
       "site": "eapteka.ru",
       "product": "Супп. 1 000 000 МЕ",
       "url": "https://www.eapteka.ru/goods/id110327/",
@@ -78,7 +174,7 @@
       "status": ""
     },
     {
-      "n": 10,
+      "n": 22,
       "site": "eapteka.ru",
       "product": "Супп. 3 000 000 МЕ",
       "url": "https://www.eapteka.ru/goods/id203571/",
@@ -86,23 +182,23 @@
       "status": ""
     },
     {
-      "n": 11,
+      "n": 23,
       "site": "eapteka.ru",
-      "product": "Мазь 40 000 МЕ/г",
+      "product": "Мазь 40 000 МЕ/г, 12 г",
       "url": "https://www.eapteka.ru/goods/id110329/",
       "reviews": 40,
       "status": ""
     },
     {
-      "n": 12,
+      "n": 24,
       "site": "eapteka.ru",
-      "product": "Гель 36 000 МЕ/г",
+      "product": "Гель 36 000 МЕ/г, 12 г",
       "url": "https://www.eapteka.ru/goods/id203002/",
       "reviews": 38,
       "status": ""
     },
     {
-      "n": 13,
+      "n": 25,
       "site": "asna.ru",
       "product": "Супп. 150 000 МЕ",
       "url": "https://www.asna.ru/cards/viferon-1_150000me_n10_suppozitorii_feron.html",
@@ -110,7 +206,7 @@
       "status": ""
     },
     {
-      "n": 14,
+      "n": 26,
       "site": "asna.ru",
       "product": "Супп. 500 000 МЕ",
       "url": "https://www.asna.ru/cards/viferon-2_500000me_n10_suppozitorii_feron.html",
@@ -118,7 +214,7 @@
       "status": ""
     },
     {
-      "n": 15,
+      "n": 27,
       "site": "asna.ru",
       "product": "Супп. 1 000 000 МЕ",
       "url": "https://www.asna.ru/cards/viferon-3_1000000me_n10_suppozitorii_feron.html",
@@ -126,7 +222,7 @@
       "status": ""
     },
     {
-      "n": 16,
+      "n": 28,
       "site": "asna.ru",
       "product": "Супп. 3 000 000 МЕ",
       "url": "https://www.asna.ru/cards/viferon-4_3000000me_n10_suppozitorii_feron.html",
@@ -134,23 +230,23 @@
       "status": ""
     },
     {
-      "n": 17,
+      "n": 29,
       "site": "asna.ru",
-      "product": "Мазь 40 000 МЕ/г",
+      "product": "Мазь 40 000 МЕ/г, 12 г",
       "url": "https://www.asna.ru/cards/viferon_40000meg_12g_maz_feron.html",
       "reviews": 0,
       "status": ""
     },
     {
-      "n": 18,
+      "n": 30,
       "site": "asna.ru",
-      "product": "Гель 36 000 МЕ/г",
+      "product": "Гель 36 000 МЕ/г, 12 г",
       "url": "https://www.asna.ru/cards/viferon_36000meml_12g_gel_feron.html",
       "reviews": 0,
       "status": ""
     },
     {
-      "n": 19,
+      "n": 31,
       "site": "polza.ru",
       "product": "Супп. 150 000 МЕ",
       "url": "https://polza.ru/catalog/viferon-suppozitorii-rektalnye-150000-me-10-sht_16826",
@@ -158,7 +254,7 @@
       "status": ""
     },
     {
-      "n": 20,
+      "n": 32,
       "site": "polza.ru",
       "product": "Супп. 500 000 МЕ",
       "url": "https://polza.ru/catalog/viferon-suppozitorii-rektalnye-500000-me-10-sht_16824",
@@ -166,7 +262,7 @@
       "status": ""
     },
     {
-      "n": 21,
+      "n": 33,
       "site": "polza.ru",
       "product": "Супп. 1 000 000 МЕ",
       "url": "https://polza.ru/catalog/viferon-suppozitorii-rektalnye-1000000-me-10-sht_16825",
@@ -174,7 +270,7 @@
       "status": ""
     },
     {
-      "n": 22,
+      "n": 34,
       "site": "polza.ru",
       "product": "Супп. 3 000 000 МЕ",
       "url": "https://polza.ru/catalog/viferon-suppozitorii-rektalnye-3000000-me-10-sht_16823",
@@ -182,23 +278,23 @@
       "status": ""
     },
     {
-      "n": 23,
+      "n": 35,
       "site": "polza.ru",
-      "product": "Мазь 12 г",
+      "product": "Мазь 40 000 МЕ/г, 12 г",
       "url": "https://polza.ru/catalog/viferon-maz-12-g-1-sht_24476/",
       "reviews": 5,
       "status": ""
     },
     {
-      "n": 24,
+      "n": 36,
       "site": "polza.ru",
-      "product": "Гель 36 000 МЕ/мл",
+      "product": "Гель 36 000 МЕ/г, 12 г",
       "url": "https://polza.ru/catalog/viferon-gel-36000-me-ml-12-g_21650",
       "reviews": 0,
       "status": ""
     },
     {
-      "n": 25,
+      "n": 37,
       "site": "apteka-april.ru",
       "product": "Супп. 150тыс МЕ",
       "url": "https://apteka-april.ru/product/2100-viferon1_suppozitorii_rektalnye_150tysyach_me_10",
@@ -206,7 +302,7 @@
       "status": ""
     },
     {
-      "n": 26,
+      "n": 38,
       "site": "apteka-april.ru",
       "product": "Супп. 500тыс МЕ",
       "url": "https://apteka-april.ru/product/2101-viferon2_suppozitorii_rektalnye_500tysyach_me_10",
@@ -214,7 +310,7 @@
       "status": ""
     },
     {
-      "n": 27,
+      "n": 39,
       "site": "apteka-april.ru",
       "product": "Супп. 1млн МЕ",
       "url": "https://apteka-april.ru/product/2102-viferon3_suppozitorii_rektalnye_1mln_me_10",
@@ -222,7 +318,7 @@
       "status": ""
     },
     {
-      "n": 28,
+      "n": 40,
       "site": "apteka-april.ru",
       "product": "Супп. 3млн МЕ",
       "url": "https://apteka-april.ru/product/2103-viferon4_suppozitorii_rektalnye_3mln_me_10",
@@ -230,23 +326,23 @@
       "status": ""
     },
     {
-      "n": 29,
+      "n": 41,
       "site": "apteka-april.ru",
-      "product": "Мазь 12г",
+      "product": "Мазь 40 000 МЕ/г, 12 г",
       "url": "https://apteka-april.ru/product/2099-viferon_maz_12g",
       "reviews": 13,
       "status": ""
     },
     {
-      "n": 30,
+      "n": 42,
       "site": "apteka-april.ru",
-      "product": "Гель 12г",
+      "product": "Гель 36 000 МЕ/г, 12 г",
       "url": "https://apteka-april.ru/product/185144-viferon_gel_12g",
       "reviews": 11,
       "status": ""
     },
     {
-      "n": 31,
+      "n": 43,
       "site": "rigla.ru",
       "product": "Супп. 150тыс.МЕ №10",
       "url": "https://www.rigla.ru/product/viferon-svechi-150000me-no10-49734",
@@ -254,7 +350,7 @@
       "status": ""
     },
     {
-      "n": 32,
+      "n": 44,
       "site": "rigla.ru",
       "product": "Супп. 500тыс.МЕ №10",
       "url": "https://www.rigla.ru/product/viferon-svechi-500000me-no10-49889",
@@ -262,7 +358,7 @@
       "status": ""
     },
     {
-      "n": 33,
+      "n": 45,
       "site": "rigla.ru",
       "product": "Супп. 1000000МЕ №10",
       "url": "https://www.rigla.ru/product/viferon-svechi-1000000me-no10-468",
@@ -270,7 +366,7 @@
       "status": ""
     },
     {
-      "n": 34,
+      "n": 46,
       "site": "rigla.ru",
       "product": "Супп. 3000000МЕ №10",
       "url": "https://www.rigla.ru/product/viferon-svechi-3000000me-no10-469",
@@ -278,23 +374,23 @@
       "status": ""
     },
     {
-      "n": 35,
+      "n": 47,
       "site": "rigla.ru",
-      "product": "Мазь 40тыс.МЕ/г",
+      "product": "Мазь 40 000 МЕ/г, 12 г",
       "url": "https://www.rigla.ru/product/viferon-maz-40tysmeg-10g12g-465",
       "reviews": 6,
       "status": ""
     },
     {
-      "n": 36,
+      "n": 48,
       "site": "rigla.ru",
-      "product": "Гель 10г/12г",
+      "product": "Гель 36 000 МЕ/г, 12 г",
       "url": "https://www.rigla.ru/product/viferon-gel-36000meg-12g-4472320",
       "reviews": 4,
       "status": ""
     },
     {
-      "n": 37,
+      "n": 49,
       "site": "budzdorov.ru",
       "product": "Супп. 150тыс.МЕ №10",
       "url": "https://www.budzdorov.ru/product/viferon-svechi-150000me-no10-49734",
@@ -302,7 +398,7 @@
       "status": ""
     },
     {
-      "n": 38,
+      "n": 50,
       "site": "budzdorov.ru",
       "product": "Супп. 500тыс.МЕ №10",
       "url": "https://www.budzdorov.ru/product/viferon-svechi-500000me-no10-49889",
@@ -310,7 +406,7 @@
       "status": ""
     },
     {
-      "n": 39,
+      "n": 51,
       "site": "budzdorov.ru",
       "product": "Супп. 1000000МЕ №10",
       "url": "https://www.budzdorov.ru/product/viferon-svechi-1000000me-no10-468",
@@ -318,7 +414,7 @@
       "status": ""
     },
     {
-      "n": 40,
+      "n": 52,
       "site": "budzdorov.ru",
       "product": "Супп. 3000000МЕ №10",
       "url": "https://www.budzdorov.ru/product/viferon-svechi-3000000me-no10-469",
@@ -326,23 +422,23 @@
       "status": ""
     },
     {
-      "n": 41,
+      "n": 53,
       "site": "budzdorov.ru",
-      "product": "Гель 10г/12г",
+      "product": "Гель 36 000 МЕ/г, 12 г",
       "url": "https://www.budzdorov.ru/product/viferon-gel-36000meg-12g-4472320",
       "reviews": 0,
       "status": ""
     },
     {
-      "n": 42,
+      "n": 54,
       "site": "budzdorov.ru",
-      "product": "Мазь 40тыс.МЕ/г",
+      "product": "Мазь 40 000 МЕ/г, 12 г",
       "url": "https://www.budzdorov.ru/product/viferon-maz-40tysmeg-10g12g-465",
       "reviews": 0,
       "status": ""
     },
     {
-      "n": 43,
+      "n": 55,
       "site": "ozerki.ru",
       "product": "Супп. 150 000 МЕ",
       "url": "https://ozerki.ru/catalog/product/viferon-1-supp-rekt-150000me-10-1/",
@@ -350,7 +446,7 @@
       "status": ""
     },
     {
-      "n": 44,
+      "n": 56,
       "site": "ozerki.ru",
       "product": "Супп. 500 000 МЕ",
       "url": "https://ozerki.ru/catalog/product/viferon-2-supp-rekt-500000me-10-1/",
@@ -358,7 +454,7 @@
       "status": ""
     },
     {
-      "n": 45,
+      "n": 57,
       "site": "ozerki.ru",
       "product": "Супп. 1 000 000 МЕ",
       "url": "https://ozerki.ru/catalog/product/viferon-3-supp-rekt-1000000me-10-3/",
@@ -366,7 +462,7 @@
       "status": ""
     },
     {
-      "n": 46,
+      "n": 58,
       "site": "ozerki.ru",
       "product": "Супп. 3 000 000 МЕ",
       "url": "https://ozerki.ru/catalog/product/viferon-4-supp-rekt-3000000me-10-376649/",
@@ -374,15 +470,15 @@
       "status": ""
     },
     {
-      "n": 47,
+      "n": 59,
       "site": "ozerki.ru",
-      "product": "Мазь 40 000 МЕ/г",
+      "product": "Мазь 40 000 МЕ/г, 12 г",
       "url": "https://ozerki.ru/catalog/product/viferon-maz-d-mest-i-naruzh-prim-40000me-g-tuba-12g-1/",
       "reviews": 2,
       "status": ""
     },
     {
-      "n": 48,
+      "n": 60,
       "site": "ozerki.ru",
       "product": "Гель 36 000 МЕ/г",
       "url": "https://ozerki.ru/catalog/product/viferon-gel-d-mestn-i-naruzh-prim-tuba-10ml-12g/",
@@ -390,7 +486,7 @@
       "status": ""
     },
     {
-      "n": 49,
+      "n": 61,
       "site": "superapteka.ru",
       "product": "Супп. 150 000 МЕ",
       "url": "https://superapteka.ru/catalog/product/viferon-1-supp-rekt-150000me-10-357687/",
@@ -398,7 +494,7 @@
       "status": ""
     },
     {
-      "n": 50,
+      "n": 62,
       "site": "superapteka.ru",
       "product": "Супп. 500 000 МЕ",
       "url": "https://superapteka.ru/catalog/product/viferon-2-supp-rekt-500000me-10-358323/",
@@ -406,7 +502,7 @@
       "status": ""
     },
     {
-      "n": 51,
+      "n": 63,
       "site": "superapteka.ru",
       "product": "Супп. 1 000 000 МЕ",
       "url": "https://superapteka.ru/catalog/product/viferon-3-supp-rekt-1000000me-10-357699/",
@@ -414,7 +510,7 @@
       "status": ""
     },
     {
-      "n": 52,
+      "n": 64,
       "site": "superapteka.ru",
       "product": "Супп. 3 000 000 МЕ",
       "url": "https://superapteka.ru/catalog/product/viferon-4-supp-rekt-3000000me-10-376649/",
@@ -422,23 +518,23 @@
       "status": ""
     },
     {
-      "n": 53,
+      "n": 65,
       "site": "superapteka.ru",
-      "product": "Мазь 40 000 МЕ/г",
+      "product": "Мазь 40 000 МЕ/г, 12 г",
       "url": "https://superapteka.ru/catalog/product/viferon-maz-d-mest-i-naruzh-prim-40000me-g-tuba-12g/",
       "reviews": 0,
       "status": ""
     },
     {
-      "n": 54,
+      "n": 66,
       "site": "superapteka.ru",
-      "product": "Гель 36 000 МЕ/г",
+      "product": "Гель 36 000 МЕ/г, 12 г",
       "url": "https://superapteka.ru/catalog/product/viferon-gel-d-mestn-i-naruzh-prim-tuba-10ml-12g/",
       "reviews": 0,
       "status": ""
     },
     {
-      "n": 55,
+      "n": 67,
       "site": "lekarstva24.ru",
       "product": "Супп. 150 000 МЕ",
       "url": "https://lekarstva24.ru/catalog/lekarstvennye_preparaty/immunostimulyatory/205056/",
@@ -446,7 +542,7 @@
       "status": ""
     },
     {
-      "n": 56,
+      "n": 68,
       "site": "lekarstva24.ru",
       "product": "Супп. 150 000 МЕ",
       "url": "https://lekarstva24.ru/catalog/lekarstvennye_preparaty/immunostimulyatory/212729/",
@@ -454,7 +550,7 @@
       "status": ""
     },
     {
-      "n": 57,
+      "n": 69,
       "site": "lekarstva24.ru",
       "product": "Супп. 500 000 МЕ",
       "url": "https://lekarstva24.ru/catalog/lekarstvennye_preparaty/immunostimulyatory/205314/",
@@ -462,7 +558,7 @@
       "status": ""
     },
     {
-      "n": 58,
+      "n": 70,
       "site": "lekarstva24.ru",
       "product": "Супп. 1 000 000 МЕ",
       "url": "https://lekarstva24.ru/catalog/lekarstvennye_preparaty/immunostimulyatory/212283/",
@@ -470,7 +566,7 @@
       "status": ""
     },
     {
-      "n": 59,
+      "n": 71,
       "site": "lekarstva24.ru",
       "product": "Супп. 1 000 000 МЕ",
       "url": "https://lekarstva24.ru/catalog/lekarstvennye_preparaty/immunostimulyatory/205186/",
@@ -478,7 +574,7 @@
       "status": ""
     },
     {
-      "n": 60,
+      "n": 72,
       "site": "lekarstva24.ru",
       "product": "Супп. 1 000 000 МЕ",
       "url": "https://lekarstva24.ru/catalog/lekarstvennye_preparaty/immunostimulyatory/212287/",
@@ -486,63 +582,63 @@
       "status": ""
     },
     {
-      "n": 61,
+      "n": 73,
       "site": "lekarstva24.ru",
-      "product": "Мазь 40 000 МЕ/г",
+      "product": "Мазь 40 000 МЕ/г, 12 г",
       "url": "https://lekarstva24.ru/catalog/lekarstvennye_preparaty/preparaty_dlya_lecheniya_zabolevaniy_organov_dykhaniya/protivokashlevye_preparaty_i_sredstva_dlya_lecheniya_prostudnykh_zabolevaniy/prochie_sredstva_dlya_lecheniya_prostudnykh_zabolevaniy/protivovirusnye_naruzhnogo_primeneniya/207429/",
       "reviews": 0,
       "status": ""
     },
     {
-      "n": 62,
+      "n": 74,
       "site": "lekarstva24.ru",
-      "product": "Мазь 40 000 МЕ/г",
+      "product": "Мазь 40 000 МЕ/г, 12 г",
       "url": "https://lekarstva24.ru/catalog/lekarstvennye_preparaty/preparaty_dlya_lecheniya_zabolevaniy_organov_dykhaniya/protivokashlevye_preparaty_i_sredstva_dlya_lecheniya_prostudnykh_zabolevaniy/prochie_sredstva_dlya_lecheniya_prostudnykh_zabolevaniy/protivovirusnye_naruzhnogo_primeneniya/213097/",
       "reviews": 0,
       "status": ""
     },
     {
-      "n": 63,
+      "n": 75,
       "site": "lekarstva24.ru",
-      "product": "Мазь 40 000 МЕ/г",
+      "product": "Мазь 40 000 МЕ/г, 12 г",
       "url": "https://lekarstva24.ru/catalog/lekarstvennye_preparaty/preparaty_dlya_lecheniya_zabolevaniy_organov_dykhaniya/protivokashlevye_preparaty_i_sredstva_dlya_lecheniya_prostudnykh_zabolevaniy/prochie_sredstva_dlya_lecheniya_prostudnykh_zabolevaniy/protivovirusnye_naruzhnogo_primeneniya/213096/",
       "reviews": 0,
       "status": ""
     },
     {
-      "n": 64,
+      "n": 76,
       "site": "lekarstva24.ru",
-      "product": "Гель 36 000 МЕ/г",
+      "product": "Гель 36 000 МЕ/г, 12 г",
       "url": "https://lekarstva24.ru/catalog/lekarstvennye_preparaty/preparaty_dlya_lecheniya_zabolevaniy_organov_dykhaniya/protivokashlevye_preparaty_i_sredstva_dlya_lecheniya_prostudnykh_zabolevaniy/prochie_sredstva_dlya_lecheniya_prostudnykh_zabolevaniy/protivovirusnye_naruzhnogo_primeneniya/208674/",
       "reviews": 0,
       "status": ""
     },
     {
-      "n": 65,
+      "n": 77,
       "site": "lekarstva24.ru",
-      "product": "Гель 36 000 МЕ/г",
+      "product": "Гель 36 000 МЕ/г, 12 г",
       "url": "https://lekarstva24.ru/catalog/lekarstvennye_preparaty/preparaty_dlya_lecheniya_zabolevaniy_organov_dykhaniya/protivokashlevye_preparaty_i_sredstva_dlya_lecheniya_prostudnykh_zabolevaniy/prochie_sredstva_dlya_lecheniya_prostudnykh_zabolevaniy/protivovirusnye_naruzhnogo_primeneniya/212339/",
       "reviews": 0,
       "status": ""
     },
     {
-      "n": 66,
+      "n": 78,
       "site": "lekarstva24.ru",
-      "product": "Гель 36 000 МЕ/г",
+      "product": "Гель 36 000 МЕ/г, 12 г",
       "url": "https://lekarstva24.ru/catalog/lekarstvennye_preparaty/preparaty_dlya_lecheniya_zabolevaniy_organov_dykhaniya/protivokashlevye_preparaty_i_sredstva_dlya_lecheniya_prostudnykh_zabolevaniy/prochie_sredstva_dlya_lecheniya_prostudnykh_zabolevaniy/protivovirusnye_naruzhnogo_primeneniya/212282/",
       "reviews": 0,
       "status": ""
     },
     {
-      "n": 67,
+      "n": 79,
       "site": "lekarstva24.ru",
-      "product": "Мазь 40 000 МЕ/г",
+      "product": "Мазь 40 000 МЕ/г, 12 г",
       "url": "https://lekarstva24.ru/catalog/lekarstvennye_preparaty/preparaty_dlya_lecheniya_zabolevaniy_organov_dykhaniya/protivokashlevye_preparaty_i_sredstva_dlya_lecheniya_prostudnykh_zabolevaniy/prochie_sredstva_dlya_lecheniya_prostudnykh_zabolevaniy/protivovirusnye_naruzhnogo_primeneniya/212281/",
       "reviews": 0,
       "status": ""
     },
     {
-      "n": 68,
+      "n": 80,
       "site": "lekarstva24.ru",
       "product": "Супп. 1 000 000 МЕ",
       "url": "https://lekarstva24.ru/catalog/lekarstvennye_preparaty/immunostimulyatory/214887/",
@@ -550,7 +646,7 @@
       "status": ""
     },
     {
-      "n": 69,
+      "n": 81,
       "site": "lekarstva24.ru",
       "product": "Супп. 500 000 МЕ",
       "url": "https://lekarstva24.ru/catalog/lekarstvennye_preparaty/immunostimulyatory/212285/",
@@ -558,7 +654,7 @@
       "status": ""
     },
     {
-      "n": 70,
+      "n": 82,
       "site": "nfapteka.ru",
       "product": "Супп. 150 000 МЕ",
       "url": "https://nfapteka.ru/tambov/catalog/lekarstva/immunnaya-sistema/immunomodulyatory/viferon-supp-rekt-150000-me-10.html",
@@ -566,7 +662,7 @@
       "status": ""
     },
     {
-      "n": 71,
+      "n": 83,
       "site": "nfapteka.ru",
       "product": "Супп. 500 000 МЕ",
       "url": "https://nfapteka.ru/tambov/catalog/lekarstva/immunnaya-sistema/immunomodulyatory/viferon-supp-rekt-500000-me-10.html",
@@ -574,7 +670,7 @@
       "status": ""
     },
     {
-      "n": 72,
+      "n": 84,
       "site": "nfapteka.ru",
       "product": "Супп. 1 000 000 МЕ",
       "url": "https://nfapteka.ru/tambov/catalog/lekarstva/immunnaya-sistema/immunomodulyatory/viferon-supp-rekt-1000000-me-10.html",
@@ -582,7 +678,7 @@
       "status": ""
     },
     {
-      "n": 73,
+      "n": 85,
       "site": "nfapteka.ru",
       "product": "Супп. 3 000 000 МЕ",
       "url": "https://nfapteka.ru/tambov/catalog/lekarstva/immunnaya-sistema/immunomodulyatory/viferon-supp-rekt-3000000-me-10.html",
@@ -590,23 +686,23 @@
       "status": ""
     },
     {
-      "n": 74,
+      "n": 86,
       "site": "nfapteka.ru",
-      "product": "Мазь 40 000 МЕ/г",
+      "product": "Мазь 40 000 МЕ/г, 12 г",
       "url": "https://nfapteka.ru/tambov/catalog/lekarstva/immunnaya-sistema/immunomodulyatory/viferon-maz-d-mest-i-nar-prim-40000-me-g-12-g-tuba.html",
       "reviews": 3,
       "status": ""
     },
     {
-      "n": 75,
+      "n": 87,
       "site": "nfapteka.ru",
-      "product": "Гель 36 000 МЕ/г",
+      "product": "Гель 36 000 МЕ/г, 12 г",
       "url": "https://nfapteka.ru/tambov/catalog/lekarstva/immunnaya-sistema/immunomodulyatory/viferon-gel-d-mest-i-nar-prim-36000-me-g-12-g-tuba.html",
       "reviews": 3,
       "status": ""
     },
     {
-      "n": 76,
+      "n": 88,
       "site": "hypericum.farm",
       "product": "Супп. 150 000 МЕ",
       "url": "https://hypericum.farm/catalog/lekarstva-i-bad/protivovirusnye-sredstva1/interferony/30331/",
@@ -614,7 +710,7 @@
       "status": ""
     },
     {
-      "n": 77,
+      "n": 89,
       "site": "hypericum.farm",
       "product": "Супп. 150 000 МЕ",
       "url": "https://hypericum.farm/catalog/lekarstva-i-bad/protivovirusnye-sredstva1/interferony/35540/",
@@ -622,7 +718,7 @@
       "status": ""
     },
     {
-      "n": 78,
+      "n": 90,
       "site": "hypericum.farm",
       "product": "Супп. 500 000 МЕ",
       "url": "https://hypericum.farm/catalog/lekarstva-i-bad/protivovirusnye-sredstva1/interferony/30334/",
@@ -630,7 +726,7 @@
       "status": ""
     },
     {
-      "n": 79,
+      "n": 91,
       "site": "hypericum.farm",
       "product": "Супп. 1 000 000 МЕ",
       "url": "https://hypericum.farm/catalog/lekarstva-i-bad/protivovirusnye-sredstva1/interferony/30332/",
@@ -638,7 +734,7 @@
       "status": ""
     },
     {
-      "n": 80,
+      "n": 92,
       "site": "hypericum.farm",
       "product": "Супп. 3 000 000 МЕ",
       "url": "https://hypericum.farm/catalog/lekarstva-i-bad/protivovirusnye-sredstva1/interferony/30333/",
@@ -646,23 +742,23 @@
       "status": ""
     },
     {
-      "n": 81,
+      "n": 93,
       "site": "hypericum.farm",
-      "product": "Мазь 40 000 МЕ/г",
+      "product": "Мазь 40 000 МЕ/г, 12 г",
       "url": "https://hypericum.farm/catalog/lekarstva-i-bad/protivovirusnye-sredstva1/interferony/34728/",
       "reviews": 0,
       "status": ""
     },
     {
-      "n": 82,
+      "n": 94,
       "site": "hypericum.farm",
-      "product": "Гель 36 000 МЕ/г",
+      "product": "Гель 36 000 МЕ/г, 12 г",
       "url": "https://hypericum.farm/catalog/lekarstva-i-bad/protivovirusnye-sredstva1/interferony/38990/",
       "reviews": 0,
       "status": ""
     },
     {
-      "n": 83,
+      "n": 95,
       "site": "irecommend.ru",
       "product": "Супп. 150 000 МЕ",
       "url": "https://irecommend.ru/content/svechi-viferon-150-000-me-dlya-detei",
@@ -670,7 +766,7 @@
       "status": ""
     },
     {
-      "n": 84,
+      "n": 96,
       "site": "irecommend.ru",
       "product": "Супп. 500 000 МЕ",
       "url": "https://irecommend.ru/content/suppozitorii-rektalnye-viferon-500-000-me",
@@ -678,7 +774,7 @@
       "status": ""
     },
     {
-      "n": 85,
+      "n": 97,
       "site": "irecommend.ru",
       "product": "Супп. 1 000 000 МЕ",
       "url": "https://irecommend.ru/content/suppozitorii-rektalnye-viferon-1-000-000-me",
@@ -686,7 +782,7 @@
       "status": ""
     },
     {
-      "n": 86,
+      "n": 98,
       "site": "irecommend.ru",
       "product": "Супп. 3 000 000 МЕ",
       "url": "https://irecommend.ru/content/suppozitorii-rektalnye-ooo-feron-viferon-3000000-me",
@@ -694,23 +790,23 @@
       "status": ""
     },
     {
-      "n": 87,
+      "n": 99,
       "site": "irecommend.ru",
-      "product": "Мазь 40 000 МЕ/г",
+      "product": "Мазь 40 000 МЕ/г, 12 г",
       "url": "https://irecommend.ru/content/maz-dlya-naruzhnogo-primeneniya-maz-viferon",
       "reviews": 138,
       "status": ""
     },
     {
-      "n": 88,
+      "n": 100,
       "site": "irecommend.ru",
-      "product": "Гель 36 000 МЕ/г",
+      "product": "Гель 36 000 МЕ/г, 12 г",
       "url": "https://irecommend.ru/content/gel-viferon-immunomodeliruyushchee-i-protivovirusnoe-sredstvo",
       "reviews": 95,
       "status": ""
     },
     {
-      "n": 89,
+      "n": 101,
       "site": "irecommend.ru",
       "product": "Иммуномодулирующее средство Ферон Виферон ректальные суппозитории",
       "url": "Иммуномодулирующее средство Ферон Виферон ректальные суппозитории | отзывы",
@@ -718,23 +814,23 @@
       "status": ""
     },
     {
-      "n": 90,
+      "n": 102,
       "site": "otzovik.com",
-      "product": "Мазь 40 000 МЕ/г",
+      "product": "Мазь 40 000 МЕ/г, 12 г",
       "url": "https://otzovik.com/reviews/maz_dlya_naruzhnogo_primeneniya_viferon/",
       "reviews": 158,
       "status": ""
     },
     {
-      "n": 91,
+      "n": 103,
       "site": "otzovik.com",
-      "product": "Гель 36 000 МЕ/г",
+      "product": "Гель 36 000 МЕ/г, 12 г",
       "url": "https://otzovik.com/reviews/gel_feron_viferon/",
       "reviews": 80,
       "status": ""
     },
     {
-      "n": 92,
+      "n": 104,
       "site": "otzovik.com",
       "product": "Супп. 150 000 МЕ",
       "url": "https://otzovik.com/reviews/svechi_rektalnie_viferon_150000_me/",
@@ -742,7 +838,7 @@
       "status": ""
     },
     {
-      "n": 93,
+      "n": 105,
       "site": "otzovik.com",
       "product": "Супп. 3 000 000 МЕ",
       "url": "https://otzovik.com/reviews/suppozitorii_rektalnie_feron_viferon_3_000_000_me/",
@@ -750,7 +846,7 @@
       "status": ""
     },
     {
-      "n": 94,
+      "n": 106,
       "site": "otzovik.com",
       "product": "Свечи ректальные Ферон \"Виферон\"",
       "url": "https://otzovik.com/reviews/svechi_rektalnie_feron_viferon/",
@@ -758,7 +854,7 @@
       "status": ""
     },
     {
-      "n": 95,
+      "n": 107,
       "site": "otzovik.com",
       "product": "Супп. 500 000 МЕ",
       "url": "https://otzovik.com/reviews/suppozitorii_rektalnie_viferon_50_me/",
@@ -766,7 +862,7 @@
       "status": ""
     },
     {
-      "n": 96,
+      "n": 108,
       "site": "otzovik.com",
       "product": "Супп. 3 000 000 МЕ",
       "url": "https://otzovik.com/reviews/suppozitorii_rektalnie_feron_viferon_3_000_000_me/",
@@ -774,7 +870,7 @@
       "status": ""
     },
     {
-      "n": 97,
+      "n": 109,
       "site": "otzovik.com",
       "product": "Супп. 1 000 000 МЕ",
       "url": "https://otzovik.com/reviews/suppozitorii_rektalnie_feron_viferon_1_000_000_me/",
@@ -782,7 +878,7 @@
       "status": ""
     },
     {
-      "n": 98,
+      "n": 110,
       "site": "otzyvru.com",
       "product": "Виферон отзывы",
       "url": "https://www.otzyvru.com/viferon",
@@ -790,23 +886,23 @@
       "status": ""
     },
     {
-      "n": 99,
+      "n": 111,
       "site": "otzyvru.com",
-      "product": "Гель 36 000 МЕ/г",
+      "product": "Гель 36 000 МЕ/г, 12 г",
       "url": "https://www.otzyvru.com/viferon-gel",
       "reviews": 31,
       "status": ""
     },
     {
-      "n": 100,
+      "n": 112,
       "site": "otzyvru.com",
-      "product": "Мазь 40 000 МЕ/г",
+      "product": "Мазь 40 000 МЕ/г, 12 г",
       "url": "https://www.otzyvru.com/viferon-maz",
       "reviews": 28,
       "status": ""
     },
     {
-      "n": 101,
+      "n": 113,
       "site": "otzyvru.com",
       "product": "Супп. 1 000 000 МЕ",
       "url": "https://www.otzyvru.com/viferon-1-mln",
@@ -814,7 +910,7 @@
       "status": ""
     },
     {
-      "n": 102,
+      "n": 114,
       "site": "otzyvru.com",
       "product": "Виферон свечи для детей",
       "url": "https://www.otzyvru.com/viferon-svechi-dlya-detey",
@@ -822,7 +918,7 @@
       "status": ""
     },
     {
-      "n": 103,
+      "n": 115,
       "site": "spasibovsem.ru",
       "product": "Свечи ректальные Ферон \"Виферон\"",
       "url": "https://spasibovsem.ru/catalog/svechi-rektalnye-viferon-otzyvy/",
@@ -830,39 +926,39 @@
       "status": ""
     },
     {
-      "n": 104,
+      "n": 116,
       "site": "spasibovsem.ru",
-      "product": "Мазь 40 000 МЕ/г",
+      "product": "Мазь 40 000 МЕ/г, 12 г",
       "url": "https://spasibovsem.ru/catalog/maz-viferon-otzyvy/",
       "reviews": 11,
       "status": ""
     },
     {
-      "n": 105,
+      "n": 117,
       "site": "spasibovsem.ru",
-      "product": "Гель 36 000 МЕ/г",
+      "product": "Гель 36 000 МЕ/г, 12 г",
       "url": "https://spasibovsem.ru/catalog/gel-viferon-otzyvy/",
       "reviews": 4,
       "status": ""
     },
     {
-      "n": 106,
+      "n": 118,
       "site": "otzyv.com",
-      "product": "Гель 36 000 МЕ/г",
+      "product": "Гель 36 000 МЕ/г, 12 г",
       "url": "https://ru.otzyv.com/viferon-gel",
       "reviews": 43,
       "status": ""
     },
     {
-      "n": 107,
+      "n": 119,
       "site": "otzyv.com",
-      "product": "Мазь 40 000 МЕ/г",
+      "product": "Мазь 40 000 МЕ/г, 12 г",
       "url": "https://ru.otzyv.com/maz-viferon",
       "reviews": 2,
       "status": ""
     },
     {
-      "n": 108,
+      "n": 120,
       "site": "otzyv.com",
       "product": "Виферон отзывы",
       "url": "https://ru.otzyv.com/viferon",
@@ -870,7 +966,7 @@
       "status": ""
     },
     {
-      "n": 109,
+      "n": 121,
       "site": "vashe-mnenie.com",
       "product": "Виферон отзывы",
       "url": "https://www.vashe-mnenie.com/reviews.php?name=viferon",
@@ -878,23 +974,23 @@
       "status": ""
     },
     {
-      "n": 110,
+      "n": 122,
       "site": "vashe-mnenie.com",
-      "product": "Гель 36 000 МЕ/г",
+      "product": "Гель 36 000 МЕ/г, 12 г",
       "url": "https://www.vashe-mnenie.com/reviews.php?name=viferon-gel",
       "reviews": 31,
       "status": ""
     },
     {
-      "n": 111,
+      "n": 123,
       "site": "vashe-mnenie.com",
-      "product": "Мазь 40 000 МЕ/г",
+      "product": "Мазь 40 000 МЕ/г, 12 г",
       "url": "https://www.vashe-mnenie.com/reviews.php?name=viferon-maz",
       "reviews": 28,
       "status": ""
     },
     {
-      "n": 112,
+      "n": 124,
       "site": "woman.ru",
       "product": "Виферон свечи ваши отзывы",
       "url": "https://www.woman.ru",
@@ -902,7 +998,7 @@
       "status": ""
     },
     {
-      "n": 113,
+      "n": 125,
       "site": "baby.ru",
       "product": "ВИФЕРОН: отзывы",
       "url": "https://www.baby.ru/pharmacy/otzyv-viferon/",

@@ -1,0 +1,184 @@
+/* ---------------------------------------------------------------------------
+   Компоненты, которые есть только у дашборда медиамониторинга.
+   Базовые токены, карточки, KPI-плитки, таблица и тултип берутся из styles.css.
+   --------------------------------------------------------------------------- */
+
+:root {
+  /* Сентимент — расходящаяся шкала: позитив и негатив как противоположности,
+     нейтраль серым посередине. Пара синий/красный проверена на различимость
+     при дальтонизме в обеих темах. */
+  --pos:  #2a78d6;
+  --neu:  #b8b6ad;
+  --neg:  #e34948;
+
+  /* Третий категориальный слот — для стопки «посты / комментарии / репосты». */
+  --series-3: #1baf7a;
+
+  /* Два периода отчёта — один тон, два шага. */
+  --p1: #9ec5f4;
+  --p2: #2a78d6;
+
+  /* Конкуренты на графиках, где герой — Виферон. */
+  --dim: #c3c2b7;
+
+  --good-text: #006300;
+  --bad-text:  #d03b3b;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) {
+    --pos: #3987e5;
+    --neu: #55554f;
+    --neg: #e66767;
+    --series-3: #199e70;
+    --p1:  #256abf;
+    --p2:  #6da7ec;
+    --dim: #4a4a46;
+    --good-text: #0ca30c;
+    --bad-text:  #e88787;
+  }
+}
+
+:root[data-theme="dark"] {
+  --pos: #3987e5;
+  --neu: #55554f;
+  --neg: #e66767;
+  --series-3: #199e70;
+  --p1:  #256abf;
+  --p2:  #6da7ec;
+  --dim: #4a4a46;
+  --good-text: #0ca30c;
+  --bad-text:  #e88787;
+}
+
+/* --- Шапка отчёта --------------------------------------------------------- */
+
+.report-head { display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: baseline; margin-bottom: 16px; }
+.report-head__period { font-size: 13px; color: var(--text-secondary); }
+.report-head__period b { color: var(--text-primary); font-weight: 600; }
+.report-head__vs { font-size: 12px; color: var(--text-muted); }
+
+/* --- Дельта --------------------------------------------------------------- */
+
+.delta { font-size: 12px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.delta--good { color: var(--good-text); }
+.delta--bad  { color: var(--bad-text); }
+.delta--flat { color: var(--text-muted); }
+
+/* --- Переключатель метрики ------------------------------------------------ */
+
+.seg { display: inline-flex; flex-wrap: wrap; gap: 2px; padding: 2px; background: var(--surface-sunken); border-radius: var(--radius-s); }
+.seg button {
+  padding: 4px 10px; font: inherit; font-size: 12.5px;
+  color: var(--text-secondary); background: none; border: none;
+  border-radius: 6px; cursor: pointer;
+}
+.seg button:hover { color: var(--text-primary); }
+.seg button[aria-pressed="true"] { background: var(--surface); color: var(--text-primary); font-weight: 600; }
+
+.card__head--tools { display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between; gap: 10px; }
+.card__tools { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.card__tools select {
+  min-height: 30px; padding: 0 8px; font: inherit; font-size: 12.5px;
+  color: var(--text-primary); background: var(--surface);
+  border: 1px solid var(--border); border-radius: var(--radius-s);
+}
+
+/* --- Гантели: период 1 → период 2 ----------------------------------------- */
+
+.dumbbell { display: flex; flex-direction: column; }
+.dumbbell__row {
+  display: grid;
+  grid-template-columns: 20px minmax(78px, 128px) 1fr minmax(96px, auto);
+  align-items: center; gap: 10px;
+  min-height: 30px; padding: 0 6px; margin: 0 -6px; border-radius: 5px;
+}
+.dumbbell__row:hover { background: var(--hover); }
+.dumbbell__row--hero { background: var(--surface-sunken); }
+.dumbbell__row--hero:hover { background: var(--hover); }
+.dumbbell__row--hero .dumbbell__name { font-weight: 600; color: var(--text-primary); }
+
+.dumbbell__rank { font-size: 12px; color: var(--text-muted); font-variant-numeric: tabular-nums; text-align: right; }
+.dumbbell__name { font-size: 13px; color: var(--text-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+.dumbbell__track { position: relative; height: 18px; }
+.dumbbell__link { position: absolute; top: 8px; height: 2px; background: var(--baseline); border-radius: 1px; }
+.dumbbell__dot {
+  position: absolute; top: 5px; width: 8px; height: 8px; margin-left: -4px;
+  border-radius: 50%; box-shadow: 0 0 0 2px var(--surface);
+}
+.dumbbell__dot--p1 { background: var(--p1); }
+.dumbbell__dot--p2 { background: var(--p2); }
+
+.dumbbell__values { display: flex; gap: 8px; align-items: baseline; justify-content: flex-end; font-size: 12.5px; font-variant-numeric: tabular-nums; }
+.dumbbell__now { color: var(--text-primary); font-weight: 600; }
+
+/* --- Сентимент: расходящаяся стопка --------------------------------------- */
+
+.sentiment { display: flex; flex-direction: column; }
+.sentiment__row {
+  display: grid; grid-template-columns: minmax(78px, 128px) 1fr;
+  align-items: center; gap: 10px;
+  min-height: 28px; padding: 0 6px; margin: 0 -6px; border-radius: 5px;
+}
+.sentiment__row:hover { background: var(--hover); }
+.sentiment__row--hero .sentiment__name { font-weight: 600; color: var(--text-primary); }
+.sentiment__name { font-size: 13px; color: var(--text-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+.sentiment__track { position: relative; height: 18px; }
+.sentiment__seg { position: absolute; top: 0; height: 100%; }
+.sentiment__seg--neg { background: var(--neg); border-radius: 4px 0 0 4px; }
+.sentiment__seg--neu { background: var(--neu); }
+.sentiment__seg--pos { background: var(--pos); border-radius: 0 4px 4px 0; }
+.sentiment__zero { position: absolute; top: -3px; bottom: -3px; width: 1px; background: var(--baseline); }
+
+.sentiment__axis { position: relative; height: 16px; margin-top: 6px; font-size: 11px; color: var(--text-muted); }
+.sentiment__axis span { position: absolute; transform: translateX(-50%); }
+
+/* --- Линейный график ------------------------------------------------------ */
+
+.line-wrap { position: relative; }
+.line-wrap svg { display: block; width: 100%; height: auto; overflow: visible; }
+
+.ln-grid { stroke: var(--grid); stroke-width: 1; }
+.ln-axis { stroke: var(--baseline); stroke-width: 1; }
+.ln-tick { fill: var(--text-muted); font-size: 11px; }
+.ln-tick--y { text-anchor: end; }
+.ln-tick--x { text-anchor: middle; }
+.ln-path { fill: none; stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }
+.ln-path--dim { stroke: var(--dim); stroke-width: 1.5; }
+.ln-path--hero { stroke: var(--series-1); }
+.ln-path--rival { stroke: var(--series-2); }
+.ln-area { fill: var(--series-1); opacity: .1; stroke: none; }
+.ln-cross { stroke: var(--baseline); stroke-width: 1; }
+.ln-dot { stroke: var(--surface); stroke-width: 2; }
+.ln-dot--hero { fill: var(--series-1); }
+.ln-dot--rival { fill: var(--series-2); }
+.ln-label { fill: var(--text-secondary); font-size: 11px; }
+
+/* --- Столбцы -------------------------------------------------------------- */
+
+.columns { display: flex; align-items: flex-end; gap: 4px; height: 190px; }
+.column { flex: 1 1 0; display: flex; flex-direction: column; justify-content: flex-end; gap: 2px; min-width: 0; height: 100%; }
+.column__stack { display: flex; flex-direction: column-reverse; gap: 2px; }
+.column__seg { min-height: 2px; }
+.column__seg:first-child { border-radius: 0 0 2px 2px; }
+.column__stack > .column__seg:last-child { border-radius: 4px 4px 0 0; }
+.column__label { font-size: 11px; color: var(--text-muted); text-align: center; font-variant-numeric: tabular-nums; }
+.columns-row { display: flex; gap: 4px; margin-top: 6px; }
+.columns-row > * { flex: 1 1 0; min-width: 0; }
+
+.column--single .column__seg { background: var(--series-1); border-radius: 4px 4px 2px 2px; }
+.column--neg .column__seg { background: var(--neg); }
+
+.seg-a { background: var(--series-1); }
+.seg-b { background: var(--series-2); }
+.seg-c { background: var(--series-3); }
+
+/* --- Мелочи --------------------------------------------------------------- */
+
+.note { margin-top: 12px; font-size: 12px; color: var(--text-muted); }
+.rank-move { font-size: 12px; font-variant-numeric: tabular-nums; }
+.rank-move--up { color: var(--good-text); }
+.rank-move--down { color: var(--bad-text); }
+.rank-move--same { color: var(--text-muted); }

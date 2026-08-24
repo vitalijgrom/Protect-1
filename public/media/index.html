@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="ru" data-theme="">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Медиамониторинг Виферон — сравнительный отчёт</title>
+<meta name="description" content="Сравнительный отчёт по эффективности: упоминания и сентимент Виферона на фоне конкурентов. Данные — из Google Таблицы.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📈</text></svg>">
+<link rel="stylesheet" href="../assets/styles.css">
+<link rel="stylesheet" href="../assets/media.css">
+<script>
+  try {
+    var saved = localStorage.getItem('viferon-dashboard-theme');
+    if (saved === 'light' || saved === 'dark') document.documentElement.dataset.theme = saved;
+  } catch (e) {}
+</script>
+</head>
+<body class="viz-root">
+
+<a class="skip-link" href="#content">Перейти к содержимому</a>
+
+<header class="topbar">
+  <div class="topbar__title">
+    <h1>Медиамониторинг Виферон</h1>
+    <p class="topbar__sub">Сравнительный отчёт по эффективности на фоне конкурентов</p>
+  </div>
+  <div class="topbar__actions">
+    <nav class="nav-switch" aria-label="Дашборды">
+      <a href="../">Отзывы</a>
+      <a href="./" aria-current="page">Медиа</a>
+    </nav>
+    <span class="status" id="status" role="status" aria-live="polite">Загрузка данных…</span>
+    <button class="btn" id="refresh" type="button" title="Обновить данные из Google Таблицы">
+      <span aria-hidden="true">⟳</span> Обновить
+    </button>
+    <button class="btn btn--icon" id="theme" type="button" aria-label="Переключить тему">
+      <span aria-hidden="true">◐</span>
+    </button>
+  </div>
+</header>
+
+<div class="banner" id="banner" hidden></div>
+
+<main id="content">
+
+  <p class="report-head">
+    <span class="report-head__period">Отчётный период: <b id="period-2">—</b></span>
+    <span class="report-head__vs">в сравнении с <span id="period-1">—</span></span>
+  </p>
+
+  <!-- Виферон в отчётном периоде -->
+  <section class="kpis" aria-label="Виферон в отчётном периоде">
+    <article class="card kpi kpi--hero">
+      <p class="kpi__label">Упоминания Виферона</p>
+      <p class="kpi__value kpi__value--hero" id="kpi-mentions">—</p>
+      <p class="kpi__hint" id="kpi-mentions-hint">&nbsp;</p>
+    </article>
+    <article class="card kpi">
+      <p class="kpi__label">Доля голоса</p>
+      <p class="kpi__value" id="kpi-share">—</p>
+      <p class="kpi__hint" id="kpi-share-hint">&nbsp;</p>
+    </article>
+    <article class="card kpi">
+      <p class="kpi__label">Место в рейтинге</p>
+      <p class="kpi__value" id="kpi-rank">—</p>
+      <p class="kpi__hint" id="kpi-rank-hint">&nbsp;</p>
+    </article>
+    <article class="card kpi">
+      <p class="kpi__label">Индекс лояльности</p>
+      <p class="kpi__value" id="kpi-loyalty">—</p>
+      <p class="kpi__hint" id="kpi-loyalty-hint">&nbsp;</p>
+    </article>
+    <article class="card kpi">
+      <p class="kpi__label">Негатив</p>
+      <p class="kpi__value" id="kpi-negative">—</p>
+      <p class="kpi__hint" id="kpi-negative-hint">&nbsp;</p>
+    </article>
+  </section>
+
+  <section class="grid">
+
+    <article class="card chart card--wide">
+      <header class="card__head card__head--tools">
+        <div>
+          <h2>Доля голоса: как изменилась за год</h2>
+          <p class="card__sub">Доля бренда в общем объёме упоминаний. Слева — место в отчётном периоде</p>
+        </div>
+        <div class="card__tools">
+          <div class="seg" role="group" aria-label="Метрика">
+            <button type="button" data-share="shareMentions" aria-pressed="true">Упоминания</button>
+            <button type="button" data-share="sharePositive" aria-pressed="false">Позитив</button>
+            <button type="button" data-share="shareNegative" aria-pressed="false">Негатив</button>
+          </div>
+        </div>
+      </header>
+      <div class="chart__body" id="chart-dumbbell"></div>
+      <footer class="legend" id="dumbbell-legend"></footer>
+    </article>
+
+    <article class="card chart card--wide">
+      <header class="card__head">
+        <h2>Тональность упоминаний в отчётном периоде</h2>
+        <p class="card__sub">Доли негатива, нейтрала и позитива внутри каждого бренда; нулевая отметка проходит по середине нейтральной зоны</p>
+      </header>
+      <div class="chart__body" id="chart-sentiment"></div>
+      <footer class="legend" id="sentiment-legend"></footer>
+    </article>
+
+    <article class="card chart">
+      <header class="card__head">
+        <h2>Индекс лояльности</h2>
+        <p class="card__sub">Позитивных упоминаний на одно негативное, отчётный период</p>
+      </header>
+      <div class="chart__body" id="chart-loyalty"></div>
+    </article>
+
+    <article class="card chart">
+      <header class="card__head">
+        <h2>Тональность Виферона по годам</h2>
+        <p class="card__sub">Из чего складывался объём упоминаний</p>
+      </header>
+      <div class="chart__body" id="chart-viferon-years"></div>
+      <footer class="legend" id="viferon-years-legend"></footer>
+    </article>
+
+    <article class="card chart card--wide">
+      <header class="card__head card__head--tools">
+        <div>
+          <h2>Виферон: динамика по месяцам</h2>
+          <p class="card__sub">С января 2016 года</p>
+        </div>
+        <div class="card__tools">
+          <div class="seg" role="group" aria-label="Метрика">
+            <button type="button" data-metric="mentions" aria-pressed="true">Упоминания</button>
+            <button type="button" data-metric="positive" aria-pressed="false">Позитив</button>
+            <button type="button" data-metric="negative" aria-pressed="false">Негатив</button>
+            <button type="button" data-metric="loyalty" aria-pressed="false">Лояльность</button>
+            <button type="button" data-metric="consultants" aria-pressed="false">Консультанты</button>
+          </div>
+        </div>
+      </header>
+      <div class="chart__body line-wrap" id="chart-viferon"></div>
+    </article>
+
+    <article class="card chart card--wide">
+      <header class="card__head card__head--tools">
+        <div>
+          <h2>Виферон против конкурентов</h2>
+          <p class="card__sub">Виферон выделен, остальные бренды — фон. Доля голоса сглаживает выбросы отдельных брендов</p>
+        </div>
+        <div class="card__tools">
+          <label class="field">
+            <span class="field__label">Сравнить с</span>
+            <select id="rival"><option value="">Никем</option></select>
+          </label>
+          <div class="seg" role="group" aria-label="Метрика">
+            <button type="button" data-rival-metric="mentions" aria-pressed="true">Упоминания</button>
+            <button type="button" data-rival-metric="share" aria-pressed="false">Доля голоса</button>
+          </div>
+          <div class="seg" role="group" aria-label="Шаг">
+            <button type="button" data-scale="months" aria-pressed="true">По месяцам</button>
+            <button type="button" data-scale="years" aria-pressed="false">По годам</button>
+          </div>
+        </div>
+      </header>
+      <div class="chart__body line-wrap" id="chart-rivals"></div>
+      <footer class="legend" id="rivals-legend"></footer>
+    </article>
+
+    <article class="card chart">
+      <header class="card__head card__head--tools">
+        <div>
+          <h2>KPI по годам</h2>
+          <p class="card__sub">Среднее значение за год</p>
+        </div>
+        <div class="seg" role="group" aria-label="Вид KPI">
+          <button type="button" data-kpi="count" aria-pressed="true">Количество</button>
+          <button type="button" data-kpi="ratio" aria-pressed="false">Коэффициент</button>
+        </div>
+      </header>
+      <div class="chart__body" id="chart-kpi"></div>
+    </article>
+
+    <article class="card chart">
+      <header class="card__head">
+        <h2>Активность аудитории по годам</h2>
+        <p class="card__sub">Посты, комментарии и репосты</p>
+      </header>
+      <div class="chart__body" id="chart-reposts"></div>
+      <footer class="legend" id="reposts-legend"></footer>
+    </article>
+
+    <article class="card chart card--wide">
+      <header class="card__head">
+        <h2>Бан-контроль</h2>
+        <p class="card__sub">Заблокированные аккаунты по месяцам</p>
+      </header>
+      <div class="chart__body" id="chart-bans"></div>
+    </article>
+
+  </section>
+
+  <section class="card card--wide table-card">
+    <header class="card__head card__head--row">
+      <div>
+        <h2>Все бренды в отчётном периоде</h2>
+        <p class="card__sub" id="table-sub">&nbsp;</p>
+      </div>
+      <button class="btn btn--ghost" id="export" type="button">Скачать CSV</button>
+    </header>
+    <div class="table-wrap">
+      <table class="data-table" id="table">
+        <thead>
+          <tr>
+            <th scope="col" class="num" data-sort="rank">#</th>
+            <th scope="col" data-sort="brand">Бренд</th>
+            <th scope="col" class="num" data-sort="mentions" aria-sort="descending">Упоминания</th>
+            <th scope="col" class="num" data-sort="mentionsDelta">Δ к прошлому</th>
+            <th scope="col" class="num" data-sort="share">Доля голоса</th>
+            <th scope="col" class="num" data-sort="shareDelta">Δ доли</th>
+            <th scope="col" class="num" data-sort="positive">Позитив</th>
+            <th scope="col" class="num" data-sort="negative">Негатив</th>
+            <th scope="col" class="num" data-sort="loyalty">Лояльность</th>
+          </tr>
+        </thead>
+        <tbody id="table-body"></tbody>
+      </table>
+    </div>
+  </section>
+
+</main>
+
+<footer class="pagefoot">
+  <p>Источник данных — Google Таблица медиамониторинга, запрашивается через Cloudflare-прослойку <code>/api/media</code>.</p>
+  <p id="foot-meta"></p>
+</footer>
+
+<div class="tooltip" id="tooltip" role="tooltip" aria-hidden="true"></div>
+
+<script src="../assets/common.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>
